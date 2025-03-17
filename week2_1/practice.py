@@ -130,12 +130,189 @@ print(r"\n \t \" \\를 그대로 출력")
 
 # 변수의 type()
 
+'''
 n = 100
 f = 3.141592
 c = 'A'
 s = "string"
 
 print("%d = "%n, type(n), "%f = "%f, type(f), "%c = "%c, type(c), "%s = "%s, type(s))
+'''
+
+# 웹 사이트 오픈
+'''
+import webbrowser
+
+url = input("사이트 url 입력 : ")
+webbrowser.open(url)
+'''
+
+# https://docs.python.org/ko/3/library/turtle.html
+# 오륜기 그리기, 오륜기 이미지 검색
+# turtle 좌표 체계는 화면 정중앙이 (0, 0)
+# pensize(), up(), down(), goto(), color(), circle() 사용
+'''
+import turtle
+t = turtle.Turtle()
+t.pensize(10)
+
+
+t.up()
+t.goto(-150, 0)
+t.down()
+t.color("blue")
+t.circle(70)
+
+t.up()
+t.goto(0, 0)
+t.down()
+t.color("black")
+t.circle(70)
+
+t.up()
+t.goto(150, 0)
+t.down()
+t.color("red")
+t.circle(70)
+
+t.up()
+t.goto(-75, -75)
+t.down()
+t.color("yellow")
+t.circle(70)
+
+t.up()
+t.goto(75, -75)
+t.down()
+t.color("green")
+t.circle(70)
+'''
+
+# 마우스로 그림 그리기(마우스 이벤트 처리) 
+# 함수 사용, 아직 배우지 않았음
+# 기능1 : 마우스 왼쪽 버튼 클릭
+#           이전 좌표에서 마우스 왼쪽 버튼 클릭한 위치까지 임의의 색상으로 선 그리기
+# 기능2 : 마우스 오른쪽 버튼 클릭
+#           이전 좌표에서 마우스 오른쪽 버튼 클릭한 위치까지 선을 그리지 않고 이동
+# 기능3 : 마우스 중앙 버튼 클릭
+#            거북이를 임의의 크기로 변경, 선도 임의의 색으로 변경
+# random 라이브러리 사용, 사용법 검색
+# random(), randrange(), onscreenclick()
+'''
+import turtle as t
+import random as ra
+
+def sLeft(x, y):
+    global r, g, b
+    t.color((r, g, b))
+    t.down()
+    t.goto(x, y)
+
+def sMid(x, y):
+    global r, g, b
+    tSize = ra.randrange(1, 5)
+    t.shapesize(tSize)
+    pSize = ra.randrange(1, 11)
+    t.pensize(pSize)
+    r = ra.random()
+    g = ra.random()
+    b = ra.random()
+
+def sRight(x, y):
+    t.up()
+    t.goto(x, y)
+
+def key_reset():                    # 추가된 키 이벤트 처리 함수 
+    t.resetscreen()
+
+def key_quit():                      # 추가된 키 이벤트 처리 함수
+    t.bye()
+
+r = g = b = 0.0
+
+t.title("마우스로 그림 그리기")
+t.shape("turtle")
+s = t.Screen()                       # 키 이벤트 추가
+
+t.onscreenclick(sLeft, 1)        # 마우스 왼쪽 버튼 클릭 이벤트 
+t.onscreenclick(sMid, 2)        # 마우스 중앙 버튼 클릭 이벤트 
+t.onscreenclick(sRight, 3)      # 마우스 오른쪽 버튼 클릭 이벤트 
+
+s.onkey(key_reset, 'r')          # r 키 프레스 이벤트          
+s.onkey(key_quit, 'q')           # q 키 프레스 이벤트 
+s.listen()
+'''
+
+# 3개의 정수를 입력 받아 제일 큰수를 찾는 방법
+'''
+w = int(input("첫번째 정수 입력 : "))
+x = int(input("두번째 정수 입력 : "))
+y = int(input("세번째 정수 입력 : "))
+z = int(input("네번째 정수 입력 : "))
+
+if w > x and w > y and w > z:
+    print("w = %d 이/가 제일 큰 정수 입니다." %w)
+elif x > y and x > z:
+    print("x = %d 이/가 제일 큰 정수 입니다." %x)
+elif y > z:
+    print("y = %d 이/가 제일 큰 정수 입니다." %y)
+else:
+    print("z = %d 이/가 제일 큰 정수 입니다." %z)
+'''
+
+# 3개의 정수 중 가장 큰 홀수 출력, 만일 홀수가 없으면 가장 작은 수 출력
+# max(), min() 사용
+'''
+w = int(input("첫번째 정수 입력 : "))
+x = int(input("두번째 정수 입력 : "))
+y = int(input("세번째 정수 입력 : "))
+
+if w % 2 != 0 and x % 2 != 0 and y % 2 != 0:
+    print("가장 큰 홀수 는 %d" %max(w, x, y))
+    
+if w % 2 != 0 and x % 2 != 0 and y % 2 == 0:
+    print("가장 큰 홀수 는 %d" %max(w, x))
+    
+if w % 2 != 0 and x % 2 == 0 and y % 2 != 0:
+    print("가장 큰 홀수 는 %d" %max(w, y))
+    
+if w % 2 == 0 and x % 2 != 0 and y % 2 != 0:
+    print("가장 큰 홀수 는 %d" %max(x, y))
+    
+if w % 2 != 0 and x % 2 == 0 and y % 2 == 0:
+    print("가장 큰 홀수 는 %d" %w)
+    
+if w % 2 == 0 and x % 2 != 0 and y % 2 == 0:
+    print("가장 큰 홀수 는 %d" %x)
+    
+if w % 2 == 0 and x % 2 == 0 and y % 2 != 0:
+    print("가장 큰 홀수 는 %d" %y)
+    
+if w % 2 == 0 and x % 2 == 0 and y % 2 == 0:
+    print("가장 작은  짝수 는 %d" %min(w, x, y))
+'''
+
+# 개선된 방법
+'''
+w = int(input("첫번째 정수 입력 : "))
+x = int(input("두번째 정수 입력 : "))
+y = int(input("세번째 정수 입력 : "))
+
+ans = min(w, x, y)
+
+if w % 2 != 0:
+    ans = w
+
+if x % 2 != 0 and x > ans:
+    ans = x
+    
+if y % 2 != 0 and y > ans:
+    ans = y
+    
+print("실행 결과 : %d" %ans)
+'''
+
+
 
 
 
