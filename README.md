@@ -17,3 +17,10 @@
     - a 에는 정수 3이 저장된다.
 
 </details>
+
+<details>
+<summary>3주차 1</summary>
+
+- 가장 우선순위가 높은 연산자는 괄호이다.
+- 
+</details>
